@@ -50,18 +50,6 @@ if [[ $XVFB == 1 ]]; then
         Xvfb :0 -screen 0 ${DISPLAY_WIDTH}x${DISPLAY_HEIGHT}x${DISPLAY_DEPTH} &
 fi
 
-## set up 32 bit libraries
-if [ ! -d .steam/sdk32 ]; then
-  mkdir -p .steam/sdk32
-  cp -v linux32/steamclient.so .steam/sdk32/steamclient.so
-fi
-
-## set up 64 bit libraries
-if [ ! -d .steam/sdk64 ]; then
-  mkdir -p .steam/sdk64
-  cp -v linux64/steamclient.so .steam/sdk64/steamclient.so
-fi
-
 ## add below your custom commands if needed
 if [ ! -d ${SERVERDATAPATH} ]; then
   mkdir -p ${SERVERDATAPATH}
@@ -90,7 +78,7 @@ if [ ! -d ${SERVERDATAPATH} ]; then
     curl -sSL -o ${FILE} https://raw.githubusercontent.com/parkervcp/eggs/master/game_eggs/steamcmd_servers/sonsoftheforest/ownerswhitelist.txt
   fi
 fi
-
+echo "Wine Prefix: ${WINEPREFIX}"
 mkdir -p $WINEPREFIX
 
 # Check if wine-gecko required and install it if so
