@@ -34,7 +34,7 @@ else
 fi
 
 ## if auto_update is not set or to 1 update or the server isn't installed
-if [ -z ${AUTO_UPDATE} ] || [ "${AUTO_UPDATE}" == "1" || ! -f .install_done ]; then 
+if [ -z "${AUTO_UPDATE}" ] || [ "${AUTO_UPDATE}" == "1" ] || [ ! -f .install_done ]; then 
     # Update Server
     if [ ! -z ${SRCDS_APPID} ]; then
         ./.steamcmd/steamcmd.sh +force_install_dir /home/container +login ${STEAM_USER} ${STEAM_PASS} ${STEAM_AUTH} $( [[ "${WINDOWS_INSTALL}" == "1" ]] && printf %s '+@sSteamCmdForcePlatformType windows' ) +app_update ${SRCDS_APPID} $( [[ -z ${SRCDS_BETAID} ]] || printf %s "-beta ${SRCDS_BETAID}" ) $( [[ -z ${SRCDS_BETAPASS} ]] || printf %s "-betapassword ${SRCDS_BETAPASS}" )  $( [[ -z ${VALIDATE} ]] || printf %s "validate" ) +quit
