@@ -8,6 +8,7 @@ cd /home/container
 # Download and Install steamcmd
 if [ ! -d ./.steamcmd ]; then
   curl -sSL -o /tmp/steamcmd.tar.gz https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz
+  mkdir -p ./.steamcmd
   tar -xzvf /tmp/steamcmd.tar.gz -C .steamcmd/
   rm -f /tmp/steamcmd.tar.gz
 fi
