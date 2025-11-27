@@ -51,13 +51,13 @@ if [[ $XVFB == 1 ]]; then
 fi
 
 ## set up 32 bit libraries
-if [ ! -d .steam/sdk32]; then
+if [ ! -d .steam/sdk32 ]; then
   mkdir -p .steam/sdk32
   cp -v linux32/steamclient.so .steam/sdk32/steamclient.so
 fi
 
 ## set up 64 bit libraries
-if [ ! -d .steam/sdk64]; then
+if [ ! -d .steam/sdk64 ]; then
   mkdir -p .steam/sdk64
   cp -v linux64/steamclient.so .steam/sdk64/steamclient.so
 fi
