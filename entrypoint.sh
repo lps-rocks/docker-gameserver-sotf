@@ -1,12 +1,15 @@
 #!/bin/bash
+
+set -e
+
 export HOME=/home/container
 cd /home/container
 
 # Download and Install steamcmd
-if [ ! -d ./steamcmd ]; then
-  cd /tmp
-  curl -sSL -o steamcmd.tar.gz https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz
-  tar -xzvf steamcmd.tar.gz -C .steamcmd/
+if [ ! -d ./.steamcmd ]; then
+  curl -sSL -o /tmp/steamcmd.tar.gz https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz
+  tar -xzvf /tmp/steamcmd.tar.gz -C .steamcmd/
+  rm -f /tmp/steamcmd.tar.gz
 fi
 
 # Information output
@@ -86,8 +89,6 @@ if [ ! -d ${SERVERDATAPATH} ]; then
     curl -sSL -o ${FILE} https://raw.githubusercontent.com/parkervcp/eggs/master/game_eggs/steamcmd_servers/sonsoftheforest/ownerswhitelist.txt
   fi
 fi
-# Install necessary to run packages
-echo "First launch will throw some errors. Ignore them"
 
 mkdir -p $WINEPREFIX
 
