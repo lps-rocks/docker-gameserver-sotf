@@ -1,4 +1,4 @@
-FROM ghcr.io/parkervcp/installers:debian
+FROM ghcr.io/parkervcp/yolks:wine_latest
 
 ENV AUTO_UPDATE=1
 ENV GAME_MODE=normal
@@ -15,9 +15,10 @@ ENV SAVE_SLOT=0000000001
 ENV SKIP_TESTS=false
 ENV WINEARCH=win64
 ENV WINEPATH=/home/container
-
-COPY rootfs /
+ENV STARTUP='wine ./SonsOfTheForestDS.exe -userdatapath "/home/container/serverconfig" -dedicatedserver.IpAddress "0.0.0.0" -dedicatedserver.GamePort "{{SERVER_PORT}}" -dedicatedserver.QueryPort "{{QUERY_PORT}}" -dedicatedserver.BlobSyncPort "{{BLOBSYNC_PORT}}" -dedicatedserver.MaxPlayers "{{MAX_PLAYERS}}" -dedicatedserver.Password "{{SRV_PW}}" -dedicatedserver.GameMode "{{GAME_MODE}}" -dedicatedserver.SkipNetworkAccessibilityTest "{{SKIP_TESTS}}" -dedicatedserver.SaveSlot "{{SAVE_SLOT}}" -dedicatedserver.LogFilesEnabled "true" -dedicatedserver.TimestampLogFilenames "true"'
 
 VOLUME /home/container
+
+COPY entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
