@@ -18,4 +18,6 @@ ENV WINEPATH=/home/container
 
 COPY rootfs /
 
+VOLUME /home/container
+
 ENTRYPOINT ["/entrypoint.sh"]
