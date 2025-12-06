@@ -21,7 +21,19 @@ ENV STARTUP='wine ./SonsOfTheForestDS.exe -userdatapath "/home/container/{{SERVE
 VOLUME /home/container
 
 COPY entrypoint.sh /entrypoint.sh
+COPY healthcheck.py /healthcheck.py
 
 RUN chmod +x /entrypoint.sh
 
+# Install Python + pip
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        python3 python3-pip \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install the A2S query module
+RUN pip3 install a2s
+
 ENTRYPOINT ["/entrypoint.sh"]
+
+HEALTHCHECK --interval=30s --timeout=10s --retries=3 \
+  CMD python3 /healthcheck.py
