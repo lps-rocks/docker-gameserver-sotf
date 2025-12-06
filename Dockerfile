@@ -27,11 +27,11 @@ RUN chmod +x /entrypoint.sh
 
 # Install Python + pip
 RUN apt-get update && apt-get install -y --no-install-recommends \
-        python3 python3-pip \
+        pipx \
     && rm -rf /var/lib/apt/lists/*
 
 # Install the A2S query module
-RUN pip3 install a2s
+RUN pipx install a2s
 
 ENTRYPOINT ["/entrypoint.sh"]
 
