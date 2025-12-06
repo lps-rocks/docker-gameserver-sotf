@@ -31,7 +31,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Install the A2S query module
-RUN pip3 install --break-system-packages a2s
+RUN pip3 install --break-system-packages python-a2s
 
 ENTRYPOINT ["/entrypoint.sh"]
 
